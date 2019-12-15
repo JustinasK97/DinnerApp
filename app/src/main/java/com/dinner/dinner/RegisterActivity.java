@@ -15,22 +15,40 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        final EditText name = findViewById(R.id.name);
-        final EditText email = findViewById(R.id.email);
-        Button registerBtn = findViewById(R.id.register_btn);
+        final EditText name1 = findViewById(R.id.name);
+        final EditText email1 = findViewById(R.id.email);
 
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        Button registerBtn1 = findViewById(R.id.register_btn1);
+
+        registerBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name2 = name.getText().toString();
-                String email2 = email.getText().toString();
-                Toast.makeText(RegisterActivity.this, "Name: " + name2 + "\n" + "Email: "
-                        + email2, Toast.LENGTH_SHORT).show();
+                //čia rašomas kodas, kuris bus vykdomas ant mygtuko paspaudimo//
+                String name = name1.getText().toString();
+                String email = email1.getText().toString();
 
+                email1.setError(null);
 
-                Intent gotoRegisterActivity = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(gotoRegisterActivity);
+                if (EmailValidation.isEmailValid(email)){
+                    //----------------------------------------------------iš kur-------------į kur---------//
+                    Intent gotoLoginActivity = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(gotoLoginActivity);
+                } else {
+
+                    email1.setError(getResources().getString(R.string.register_invalid_email_message));
+                    email1.requestFocus();
+                }
+
+                Toast.makeText(RegisterActivity.this, "Name: " + name + "\n" + "email: "
+                        + email, Toast.LENGTH_SHORT).show();
+                //----------------------------------------------------iš kur-------------į kur---------//
+
             }
         });
+
+
+
+
+
     }
 }

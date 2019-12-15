@@ -1,15 +1,21 @@
 <resources>
     <string name="app_name">Dinner</string>
     <string name="app_title">winner winner chicken dinner</string>
+    
+    <string name="app_title1">Register</string>
+
+    <string name="register_email">E.mail</string>
+    <string name="register_name">Name</string>
+    <string name="register_password">Password</string>
+    <string name="register_register_btn">Register</string>
+
+    <string name="register_invalid_email_message">Wrong email</string>
 
     <string name="login_username">Username:</string>
     <string name="login_password">Password:</string>
     <string name="login_login_btn">Login</string>
     <string name="login_register_btn">Register</string>
 
-    <string name="register_name">Name:</string>
-    <string name="register_email">Email:</string>
-    <string name="register_password">Password:</string>
-    <string name="register_register_btn">Register</string>
+    <string name="login_invalid_credentials_message">Wrong username or password</string>
 
 </resources>

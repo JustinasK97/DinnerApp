@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText username = findViewById(R.id.username);
         final EditText password = findViewById(R.id.password);
+
         Button loginBtn = findViewById(R.id.login_btn);
         Button registerBtn = findViewById(R.id.register_btn);
 
@@ -27,21 +28,41 @@ public class LoginActivity extends AppCompatActivity {
                 //čia rašomas kodas, kuris bus vykdomas ant mygtuko paspaudimo//
                 String username2 = username.getText().toString();
                 String password2 = password.getText().toString();
-                Toast.makeText(LoginActivity.this, "Username: " + username2 + "\n" + "Password: "
-                        + password2, Toast.LENGTH_SHORT).show();
-                //----------------------------------------------------iš kur-------------į kur---------//
-                Intent gotoSearchActivity = new Intent(LoginActivity.this, SearchActivity.class);
-                startActivity(gotoSearchActivity);
+
+                //klaidu zurnalo isvalymas//
+                username.setError(null);
+                password.setError(null);
+
+                if (Validation.isCredentialsValid(username2) && Validation.isCredentialsValid(password2)) {
+                    //----------------------------------------------------iš kur-------------į kur---------//
+                    Intent gotoSearchActivity = new Intent(LoginActivity.this, SearchActivity.class);
+                    startActivity(gotoSearchActivity);
+                } else {
+
+                    /*Toast.makeText(LoginActivity.this, "Username: " + username2 + "\n" + "Password: "
+                            + password2, Toast.LENGTH_SHORT).show();*/
+                    username.setError(getResources().getString(R.string.login_invalid_credentials_message));
+                    username.requestFocus();
+                    password.setError(getResources().getString(R.string.login_invalid_credentials_message));
+                    password.requestFocus();
+                    /* Toast.makeText(LoginActivity.this,getResources().getString(R.string.login_invalid_credentials_message),
+                          Toast.LENGTH_SHORT).show();*/
+                }
             }
         });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //čia rašomas kodas, kuris bus vykdomas ant mygtuko paspaudimo, perejimas i register langa//
+
+                //----------------------------------------------------iš kur-------------į kur---------//
                 Intent gotoRegisterActivity = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(gotoRegisterActivity);
             }
         });
-        }
+    }
 
 }
+
+
