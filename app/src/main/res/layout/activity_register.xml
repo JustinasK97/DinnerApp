@@ -34,7 +34,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_email"
+        android:text="Email"
         android:textColor="@color/colorText"
         android:textSize="20dp" />
 
