@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class NewEntryActivity extends AppCompatActivity {
 
+    private static final String INSERT_URL = "https://furfuncom.000webhostapp.com/dinner/db.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class NewEntryActivity extends AppCompatActivity {
                                 "Price: " + dinner.getPrice() + "\n" +
                                 "Payment: " + dinner.getPayment() + "\n",
                         Toast.LENGTH_SHORT).show();
+//                        insertToDB(dinner);
             }
         });
 
