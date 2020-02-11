@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: 2018 m. Spa 10 d. 12:36
--- Server version: 10.2.12-MariaDB
--- PHP Version: 7.0.26
+-- Host: 127.0.0.1
+-- Generation Time: 2020 m. Vas 11 d. 08:28
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.2.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,40 +19,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `id3260688_db`
+-- Database: `dinner`
 --
 
 -- --------------------------------------------------------
-CREATE DATABASE IF NOT EXISTS  `dinner` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `dinner`;
--- 
+
 --
 -- Sukurta duomenų struktūra lentelei `dinner`
 --
 
 CREATE TABLE `dinner` (
   `id` int(11) NOT NULL,
-  `data` datetime NOT NULL DEFAULT current_timestamp(),
-  `type` varchar(255) NOT NULL,
+  `dinner_type` varchar(255) NOT NULL,
   `delivery` varchar(255) NOT NULL,
-  `price` varchar(255) NOT NULL,
-  `payment` varchar(255) NOT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Sukurta duomenų kopija lentelei `F2`
---
-
-INSERT INTO `dinner` (`id`, `data`, `type`, `delivery`, `price`, `payment`) VALUES
-(3, '2020-02-10 12:15:33', 'salad', 'yes', '10 ', 'card'),
-(4, '2020-02-10 12:15:33', 'soup', 'yes', '5', 'card');
+  `price` double NOT NULL,
+  `payment` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `F2`
+-- Indexes for table `dinner`
 --
 ALTER TABLE `dinner`
   ADD PRIMARY KEY (`id`);
@@ -62,10 +51,10 @@ ALTER TABLE `dinner`
 --
 
 --
--- AUTO_INCREMENT for table `F2`
+-- AUTO_INCREMENT for table `dinner`
 --
 ALTER TABLE `dinner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
