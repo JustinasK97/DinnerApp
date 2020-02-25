@@ -30,6 +30,7 @@ public class DB {
             // byethost naudoja antibot sistema, todel reikia kiekvienam rankutėmis suvesti cookie turinį,
             // kuris pas kiekviena bus skirtingas. kaip tai padaryti zemiau nuoroda
             // http://stackoverflow.com/questions/31912000/byethost-server-passing-html-values-checking-your-browser-with-json-string
+            conn.setRequestProperty("Cookie", "__test=7a4d917e220fbf9a55cab3046bd1a3b7; expires=2038 m. sausio 1 d., penktadienis 01:55:55; path=/");
             conn.setDoInput(true);
             conn.setDoOutput(true);
             //7a4d917e220fbf9a55cab3046bd1a3b7
@@ -48,9 +49,10 @@ public class DB {
             if (responseCode == HttpsURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 response = br.readLine();
-            } else if (responseCode == HttpsURLConnection.HTTP_NOT_AUTHORITATIVE) {
-                response = "203";
-            } else {
+            }// else if (responseCode == HttpsURLConnection.HTTP_NOT_AUTHORITATIVE) {
+            // response = "203";
+            //  }
+            else {
                 response = "Error Registering "+String.valueOf(responseCode);
             }
         } catch (Exception e) {

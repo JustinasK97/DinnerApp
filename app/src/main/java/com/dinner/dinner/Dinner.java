@@ -1,12 +1,21 @@
 package com.dinner.dinner;
 
 public class Dinner {
+    private int id;
     private String dinnerType;
     private String delivery;
     private double price;
     private String payment;
 
     public Dinner(String dinnerType, String delivery, double price, String payment) {
+        this.dinnerType = dinnerType;
+        this.delivery = delivery;
+        this.price = price;
+        this.payment = payment;
+    }
+
+    public Dinner(int id, String dinnerType, String delivery, double price, String payment) {
+        this.id = id;
         this.dinnerType = dinnerType;
         this.delivery = delivery;
         this.price = price;

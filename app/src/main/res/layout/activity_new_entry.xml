@@ -57,14 +57,12 @@
                 android:weightSum="2">
 
                 <RadioButton
-                    android:id="@string/new_entry_dinner_delivery_type_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/new_entry_dinner_delivery_type_yes" />
 
                 <RadioButton
-                    android:id="@string/new_entry_dinner_delivery_type_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -103,7 +101,6 @@
                 android:id="@+id/btn_create"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@color/colorAccent"
                 android:text="@string/new_entry_button" />
 

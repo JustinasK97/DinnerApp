@@ -1,6 +1,9 @@
 package com.dinner.dinner;
 
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,17 +16,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
 
 public class NewEntryActivity extends AppCompatActivity {
 
-    private static final String INSERT_URL = "https://furfuncom.000webhostapp.com/dinner/db.php";
+//    private static final String INSERT_URL = "http://dinnerApp.epizy.com/mobile/db.php";
+    public static final String DB_URL = " http://dinnerApp.epizy.com/mobile/db.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_entry);
-        setTitle(getResources().getString(R.string.new_entry_lable));
-
 
         Button newEntryBtn = findViewById(R.id.btn_create);
         final CheckBox soupCB = findViewById(R.id.checkSoup);
@@ -57,15 +60,66 @@ public class NewEntryActivity extends AppCompatActivity {
 
                 Dinner dinner = new Dinner(dinnerTypes, selectedDeliveryTypeBtnName, price, payment);
 
-                Toast.makeText(NewEntryActivity.this,
+                insertToDB(dinner);
+                /*Toast.makeText(NewEntryActivity.this,
                         "Dinner type: " + dinner.getDinnerType() + "\n" +
                                 "Delivery type: " + dinner.getDelivery() + "\n" +
                                 "Price: " + dinner.getPrice() + "\n" +
                                 "Payment: " + dinner.getPayment() + "\n",
-                        Toast.LENGTH_SHORT).show();
-//                        insertToDB(dinner);
+                        Toast.LENGTH_SHORT).show();*/
             }
         });
+
+    }
+
+    private void insertToDB (Dinner dinner){
+        class NewEntry extends AsyncTask<String, Void, String> {
+
+            ProgressDialog loading;
+            DB db = new DB();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(NewEntryActivity.this,
+                        getResources().getString(R.string.new_entry_database_info),
+                        null, true, true);
+            }
+
+            @Override
+            protected String doInBackground(String... strings) {
+                // Pirmas string yra raktas, antras - reikšmė.
+                HashMap<String, String> pietus = new HashMap<String, String>();
+                pietus.put("dinner_type", strings[0]);
+                pietus.put("delivery", strings[1]);
+                pietus.put("price", strings[2]);
+                pietus.put("payment", strings[3]);
+                pietus.put("action", "insert");
+
+//                String result = db.sendPostRequest(INSERT_URL, pietus);
+                String result = db.sendPostRequest(DB_URL, pietus);
+
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                Toast.makeText(NewEntryActivity.this,
+                        s,
+                        Toast.LENGTH_SHORT).show();
+                Intent eitiIPaieskosLanga = new Intent(NewEntryActivity.this,SearchActivity.class);
+                startActivity(eitiIPaieskosLanga);
+            }
+
+        }
+        NewEntry newEntry = new NewEntry();
+        newEntry.execute(
+               dinner.getDinnerType(),
+                dinner.getDelivery(),
+                Double.toString(dinner.getPrice()),
+                dinner.getPayment()
+        );
 
     }
 
