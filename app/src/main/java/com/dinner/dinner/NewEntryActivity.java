@@ -20,8 +20,7 @@ import java.util.HashMap;
 
 public class NewEntryActivity extends AppCompatActivity {
 
-//    private static final String INSERT_URL = "http://dinnerApp.epizy.com/mobile/db.php";
-    public static final String DB_URL = " http://dinnerApp.epizy.com/mobile/db.php";
+    public static final String INSERT_URL = "http://kitm2.epizy.com/mobile/db.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +95,7 @@ public class NewEntryActivity extends AppCompatActivity {
                 pietus.put("payment", strings[3]);
                 pietus.put("action", "insert");
 
-//                String result = db.sendPostRequest(INSERT_URL, pietus);
-                String result = db.sendPostRequest(DB_URL, pietus);
+                String result = db.sendPostRequest(INSERT_URL, pietus);
 
                 return result;
             }

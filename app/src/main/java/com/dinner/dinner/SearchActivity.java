@@ -12,10 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,13 +53,12 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        Button insertBtn = findViewById(R.id.new_entry_button);
-
-        insertBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                Intent goToEntryActivity = new Intent(SearchActivity.this, NewEntryActivity.class);//Pirmas param = is kurios veiklos, Antras į kuria veiklą
-                startActivity(goToEntryActivity);
+       Button newEntryButton = findViewById(R.id.new_entry_button);
+        newEntryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gotoNewEntryActivity = new Intent(SearchActivity.this, NewEntryActivity.class);
+                startActivity(gotoNewEntryActivity);
             }
         });
     }
@@ -120,7 +119,7 @@ public class SearchActivity extends AppCompatActivity {
             super.onPreExecute();
 
             //this method will be running on UI thread
-            pdLoading.setMessage(getResources().getString(R.string.entry_db_loading_msg));
+            pdLoading.setMessage(getResources().getString(R.string.new_entry_database_info));
             pdLoading.setCancelable(false);
             pdLoading.show();
 
@@ -131,7 +130,7 @@ public class SearchActivity extends AppCompatActivity {
             try {
 
                 // Enter URL address where your php file resides
-                url = new URL(NewEntryActivity.DB_URL);
+                url = new URL(NewEntryActivity.INSERT_URL);
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -228,11 +227,11 @@ public class SearchActivity extends AppCompatActivity {
                     // Extract data from json and store into ArrayList as class objects
                     for (int i = 0; i < jArray.length(); i++) {
                         JSONObject json_data = jArray.getJSONObject(i);
-                        //public Car(int id, String data, String brand, String color, int year, String type, String defect)
+                        //String dinnerType, String delivery, double price, String paymen
                         Dinner dinner = new Dinner(
                                 json_data.getInt("id"),
-                                json_data.getString("dinnerType"),
-                                json_data.getString("deliver"),
+                                json_data.getString("dinner_type"),
+                                json_data.getString("delivery"),
                                 json_data.getDouble("price"),
                                 json_data.getString("payment")
                         );
