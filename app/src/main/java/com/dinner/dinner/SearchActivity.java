@@ -235,12 +235,12 @@ public class SearchActivity extends AppCompatActivity {
                                 json_data.getDouble("price"),
                                 json_data.getString("payment")
                         );
-                        Log.e("dinner",dinner.getDinnerType()+ " "+ dinner.getPrice());
+                        Log.e("dinner2",dinner.getDinnerType()+ " "+ dinner.getPrice());
                         data.add(dinner);
                     }
 
                     // Setup and Handover data to recyclerview
-                    mRVDinner = (RecyclerView) findViewById(R.id.pokemonList);
+                    mRVDinner = (RecyclerView) findViewById(R.id.dinnerList);
                     mAdapter = new AdapterDinner(SearchActivity.this, data);
                     mRVDinner.setAdapter(mAdapter);
                     mRVDinner.setLayoutManager(new LinearLayoutManager(SearchActivity.this));

@@ -28,5 +28,10 @@
     </string-array>
     <string name="new_entry_button">Create</string>
     <string name="new_entry_database_info">Prašome palaukti, įrašas siunčiamas į duomenų bazę</string>
+    <string name="app_title1">dinner</string>
+    <string name="register_name">dinner</string>
+    <string name="register_password">dinner</string>
+    <string name="register_register_btn">dinner</string>
+    <string name="register_invalid_email_message">dinner</string>
 
 </resources>
