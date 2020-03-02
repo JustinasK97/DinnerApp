@@ -92,10 +92,9 @@ public class AdapterDinner extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     dinner.getDinnerType() + " " + dinner.getPrice(),
                     Toast.LENGTH_SHORT).show();
 
-            // TODO: implement when edit dinner
-            //Intent intent = new Intent(context, NewEntryActivity.class);
-            //intent.putExtra(ENTRY, dinner);
-            //context.startActivity(intent);
+            Intent intent = new Intent(context, NewEntryActivity.class);
+            intent.putExtra(ENTRY, dinner);
+            context.startActivity(intent);
         }
 
     }

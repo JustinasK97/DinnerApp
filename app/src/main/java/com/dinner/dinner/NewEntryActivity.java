@@ -20,12 +20,31 @@ import java.util.HashMap;
 
 public class NewEntryActivity extends AppCompatActivity {
 
-    public static final String INSERT_URL = "http://kitm2.epizy.com/mobile/db.php";
+    public static final String INSERT_URL = "http://dinnerapp.epizy.com/mobile/db.php";
+
+    Dinner dinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_entry);
+
+        Intent intent = getIntent();
+        dinner = (Dinner) intent.getSerializableExtra(AdapterDinner.ENTRY);
+
+        if(dinner == null){//new entry- values by default
+            //String dinnerType, String delivery, double price, String payment
+            dinner = new Dinner(
+                    -1,
+                    getResources().getString(R.string.new_entry_dinner_type_main),
+                    getResources().getString(R.string.new_entry_dinner_delivery_type_no),
+                    0,
+                    getResources().getStringArray(R.array.new_entry_dinner_payment_type).toString()
+            );
+
+        }else {//existing entry- values by entry
+            
+        }
 
         Button newEntryBtn = findViewById(R.id.btn_create);
         final CheckBox soupCB = findViewById(R.id.checkSoup);
